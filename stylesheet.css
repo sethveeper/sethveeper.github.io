@@ -1,0 +1,71 @@
+body, html {
+  color: white;
+  background-color: #3d4450;
+  padding: 5px;
+  scroll-behavior: smooth;
+  font-family: Verdana, sans-serif;
+}
+
+a {
+  color: #6d5ac8;
+}
+
+nav {
+  background-color: #c3a0d6;
+  border: 1px solid black;
+}
+
+h1, h2, h3, h4, h5, h6, .btn {
+  font-family: 'Audiowide', cursive;
+}
+
+@media screen and (max-width: 530px) {
+  .navbar-brand {
+    display: none
+  }
+}
+
+.nav-item {
+  margin: 3px;
+}
+
+#top {
+  position: absolute;
+  top: 0;
+}
+
+main {
+  margin-top: 100px;
+}
+
+.card {
+  margin-bottom: 15px;
+  border: 1px solid black;
+  border-radius: 10px 30px 10px 30px;
+}
+
+.card:nth-child(even) {
+  color: white;
+  background-color: #8440a8;
+}
+
+.card:nth-child(odd) {
+  color: black;
+  background-color: white;
+}
+
+.card-image {
+  float: left;
+  margin: 10px;
+  border: 3px double black;
+}
+
+footer {
+  color: black;
+  background-color: #c3a0d6;
+  text-align: center;
+  width: 100%;
+  padding: 15px;
+  border: 1px solid black;
+  border-radius: 10px 30px 10px 30px;
+}
