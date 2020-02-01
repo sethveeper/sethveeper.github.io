@@ -1,3 +1,4 @@
+
 document.getElementById("button").addEventListener("click", changeColor);
 
 function changeColor() {
@@ -21,12 +22,12 @@ function Color(red, green, blue) {
       output = "ff";
     else
       output = value.toString(16);
-      
+
     return output;
   };
 
-  this.red = this.Parse(red);
-  this.green = this.Parse(green);
-  this.blue = this.Parse(blue);
-  this.hex = "#" + this.red + this.green + this.blue
+  this.red = red;
+  this.green = green;
+  this.blue = blue;
+  this.hex = "#" + this.Parse(red) + this.Parse(green) + this.Parse(blue);
 }
