@@ -1,0 +1,16 @@
+body {
+  font-family: 'Comic Sans', sans-serif;
+  font-variant: small-caps;
+  font-size: 24pt;
+  background-color: #ffffff;
+}
+
+div {
+  text-align: center;
+  background-color: #ffffff;
+  border: 5px double #000000;
+  border-radius: 20px;
+  width: 75%;
+  margin: auto;
+  margin-bottom: 15px;
+}
