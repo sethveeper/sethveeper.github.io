@@ -1,0 +1,63 @@
+html, body {
+  font-size: 3vw;
+  font-family: 'Amatic SC', cursive;
+  color: white;
+  background-color: black;
+}
+
+#container {
+  width: 90vw;
+  padding: 1vw;
+  margin: auto;
+  border: 1px white solid;
+}
+
+/**************************
+==  END OF LAYOUT STUFF  ==
+***************************/
+
+h1 {
+  font-size: 3rem;
+  text-align: center;
+}
+
+button {
+  font-size: 0.5rem;
+}
+
+a:link, a:active, a:visited {
+  color: white;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: green;
+  text-decoration: underline;
+}
+
+/**************************
+==  END OF FORMAT STUFF  ==
+***************************/
+
+.card {
+  width: 75%;
+  padding: inherit;
+  margin: inherit;
+  border-radius: 1vw;
+  border: 0.5vw green solid;
+}
+
+.card h2, .card p {
+  margin: 0.5vw;
+  padding: 0.5vw;
+  border-radius: inherit;
+  border: inherit;
+}
+
+.card h2 {
+  font-size: 1.5rem;
+}
+
+/************************
+==  END OF CARD STUFF  ==
+*************************/

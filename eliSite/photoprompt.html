@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <title>Photo Prompt</title>
+</head>
+
+<body>
+  <div id="container">
+      <p>Take a picture of your...</p>
+      <button onclick="addPrior()">Confirm</button> 
+      <button onclick="clearPriors()">Clear</button> 
+      <h1 id="output"></h1>
+  </div>
+
+  <script>
+      var container = document.getElementById("container");
+      var outputH1 = document.getElementById("output");
+      var list = getList();
+      var index = Math.floor(Math.random() * list.length);
+    
+      outputH1.innerHTML += list[index];
+
+      aryPriors = checkPriors();
+
+      if(aryPriors.length != "")
+      {
+        for(var i = 0; i < aryPriors.length; i++)
+        {
+            container.innerHTML += "<p>- " + aryPriors[i] + "</p>";
+        }
+      }
+
+    function getList()
+    {
+       var list = [
+        "Face",
+        "Legs",
+        "Butt",
+        "Cock",
+        "Torso",
+        "Teasing"
+      ];
+      var output = [];
+      var compare = checkPriors();
+
+      for(var i = 0; i < list.length; i++)
+      { // For each body part...
+        if (!compare.includes(list[i]))
+            output.push(list[i]);
+      }
+
+      if (output.length < 1)
+      {
+        output = list;
+        clearPriors();
+      }
+
+      return output;
+    }
+
+    function checkPriors()
+    {
+        var output = document.cookie;
+
+        if (output == "")
+            output = [];
+        else
+        {
+            output = output.substr(7);
+            output = output.split(",");
+        }
+
+        return output;
+    }
+
+    function addPrior()
+    {
+        var input = outputH1.innerHTML;
+        var aryPriors = document.cookie;
+
+        aryPriors = checkPriors();
+        aryPriors.push(input);
+        
+        var output = "";
+        for(var i = 0; i < aryPriors.length; i++)
+        {
+            output += aryPriors[i];
+            if (i < (aryPriors.length - 1))
+                output += ",";
+        }
+
+        document.cookie = "priors=" + output + "; expires=Thu, 18 Dec 2069 12:00:00 UTC";
+        location.reload(); 
+    }
+
+    function clearPriors()
+    {
+        document.cookie = "priors=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+        alert("Cleared priors. Effect will not take until tab is closed.");
+    }
+  </script>
+</body>
+
+</html>
