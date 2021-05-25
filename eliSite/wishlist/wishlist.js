@@ -1,0 +1,6 @@
+var wishlist = [
+{"Title":"Toe Bean Stockings","Link":"https://toebeanies.com/","Descript":"This is where they originally come from, it seems. According to the site owner they are patent-pending, and other sources are therefor not necessarily legal?"},
+{"Title":"Cat Headphones","Link":"https://www.amazon.com/Brookstone-Wired-Cat-Ear-Headphones/dp/B015OR9R8O","Descript":"I like these ones because the ears are also speakers. I suppose I\u0027m not married to that feature, though. Annoyingly, though, they\u0027re unavailable at this link, so I have no idea how much they\u0027re supposed to cost."},
+{"Title":"Cum Lube","Link":"https://bad-dragon.com/products/cumlube","Descript":"I\u0027m almost out...\r\n\r\n-\\_UwU_/-"},
+{"Title":"Final Fantasy Tactics: A2","Link":"https://finalfantasy.fandom.com/wiki/Final_Fantasy_Tactics_A2:_Grimoire_of_the_Rift","Descript":"Unfortunately, I\u0027m not sure how to find a 14-year-old game cartridge that isn\u0027t bloody expensive... I\u0027m planning to go to Springfield to check some of the used game shops, so maybe it\u0027ll turn up there."}
+];

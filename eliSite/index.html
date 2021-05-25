@@ -20,13 +20,13 @@
     <br>
   </div>
 
-  <script src="wishlist.js"></script> 
+  <script src="./wishlist/wishlist.js"></script> 
   <script>
     var container = document.getElementById('container');
 
 for(var i = 0; i < wishlist.length; i++)
 {
-    container.innerHTML += getCard(wishlist[i].title, wishlist[i].link, wishlist[i].descript);
+    container.innerHTML += getCard(wishlist[i].Title, wishlist[i].Link, wishlist[i].Descript);
 }
 
 function getCard(inTitle, inLink, inDescript)
