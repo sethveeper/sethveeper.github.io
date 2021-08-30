@@ -25,7 +25,6 @@
   <script type="text/javascript">
     console.log("Hello, fox. It's been a while.");
     var aryCommanders;
-    getAllCards();
 
     /**************************
     == Functions start here! ==
@@ -40,6 +39,9 @@
 
     function fillCard(inCard)
     {
+      console.log("Selected from " + aryCommanders.total_cards + " possible Commanders...");
+      document.getElementById("cardTotal").innerHTML = "Selected from " + aryCommanders.total_cards + " possible Commanders...";
+
       document.getElementById("cardName").innerHTML = inCard.name;
       document.getElementById("cardImg").src = inCard.image_uris.normal;
       document.getElementById("cardScryfall").href = inCard.scryfall_uri;
@@ -61,13 +63,21 @@
       xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
           aryCommanders = JSON.parse(this.responseText);
-          console.log("Selected from " + aryCommanders.total_cards + " possible Commanders...");
-          document.getElementById("cardTotal").innerHTML = "Selected from " + aryCommanders.total_cards + " possible Commanders...";
 
-          getRandCard(aryCommanders);
-        } else {
+          try {
+            getRandCard(aryCommanders);
+          }
+          catch (e) {
+            document.getElementById("cardContain").innerHTML = "<h1>Oops! It failed for some reason! Please try again...</h1>";
+          }
+          // End of Try/Catch block
+
+        }
+        // End of If (ready!)
+        else {
           console.log("Failed to call!");
         }
+        // End of Else
       };
       // End of onreadystatchange function re-write
 
