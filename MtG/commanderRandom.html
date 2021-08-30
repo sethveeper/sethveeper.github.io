@@ -63,15 +63,6 @@
       xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
           aryCommanders = JSON.parse(this.responseText);
-
-          try {
-            getRandCard(aryCommanders);
-          }
-          catch (e) {
-            document.getElementById("cardContain").innerHTML = "<h1>Oops! It failed for some reason! Please try again...</h1>";
-          }
-          // End of Try/Catch block
-
         }
         // End of If (ready!)
         else {
