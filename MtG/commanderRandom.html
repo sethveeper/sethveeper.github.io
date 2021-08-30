@@ -17,8 +17,8 @@
       <li><a href="#" id="cardEDHREC">EDHREC</a></li>
       <li><a href="#" id="cardTCGPlayer">TCG Player</a></li>
     </ul>
-    <p>
-      <img src="filler.png" alt="Filler Card" id="cardImg">
+    <button id="cardReroll" onclick="getRandCard()">You don't like this one?</button>
+    <p id="cardImg">
     </p>
   </div>
 
@@ -31,29 +31,93 @@
     == Functions start here! ==
     **************************/
 
-    function getRandCard(inScry) {
-      var intRandom = Math.floor(Math.random() * inScry.data.length);
+    function getRandCard() {
+
+      var intRandom;
+      var output;
+
+      var msgTotal = "Selected from " + aryCommanders.length + " possible Commanders...";
+      console.log(msgTotal);
+      document.getElementById("cardTotal").innerHTML = msgTotal;
+
+      if(aryCommanders.length > 1)
+      {
+        intRandom = Math.floor(Math.random() * aryCommanders.length);
+        output = aryCommanders[intRandom];
+        aryCommanders.splice(intRandom, 1)
+      }
+      else
+      {
+        intRandom = 0;
+        output = aryCommanders[intRandom];
+      }
+
       console.log("Randomly selected index is " + intRandom);
-      fillCard(inScry.data[intRandom]);
+      console.log("Result: " + output.name);
+
+      fillCard(output);
     }
     // End of getRandCard function
 
     function fillCard(inCard)
     {
-      console.log("Selected from " + aryCommanders.total_cards + " possible Commanders...");
-      document.getElementById("cardTotal").innerHTML = "Selected from " + aryCommanders.total_cards + " possible Commanders...";
-
       document.getElementById("cardName").innerHTML = inCard.name;
-      document.getElementById("cardImg").src = inCard.image_uris.normal;
       document.getElementById("cardScryfall").href = inCard.scryfall_uri;
       document.getElementById("cardEDHREC").href = inCard.related_uris.edhrec;
       document.getElementById("cardTCGPlayer").href = inCard.purchase_uris.tcgplayer;
+
+      document.getElementById("cardImg").innerHTML = "";
+      if(typeof inCard.card_faces != "undefined")
+      {
+        for(var i = 0; i < inCard.card_faces.length; i++)
+        {
+          var face = document.createElement("img");
+          face.src = inCard.card_faces[i].image_uris.small;
+          document.getElementById("cardImg").appendChild(face)
+        }
+        // End of For loop
+      }
+      // End of If (There's more than one card face)
+      else
+      {
+        var face = document.createElement("img");
+        face.src = inCard.image_uris.small;
+        document.getElementById("cardImg").appendChild(face)
+      }
+      // End of Else
     }
     // End of fillCard function
 
+    function getArray(scryResults)
+    {
+      var output = [];
+      var iter = 0;
+      var bool = true;
+
+      while(bool)
+      {
+        try {
+          document.getElementById("cardName").innerHTML = scryResults.data[iter].name;
+          output.push(scryResults.data[iter]);
+          iter++;
+          bool = true;
+        }
+        catch (e) {
+          bool = false;
+        }
+      }
+      // End of while loop
+
+      console.log("Successfully cached " + output.length + " cards in total.");
+      return output;
+    }
+    // End of getArray function
+
     function getAPIcall()
     {
-      return "https://api.scryfall.com/cards/search?q=is%3Acommander";
+      let output = 'https://api.scryfall.com/cards/search?q=';
+      output += 'is%3Acommander';
+      return output;
     }
 
     function getAllCards() {
@@ -63,8 +127,10 @@
       var xmlHttp = new XMLHttpRequest();
       xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-          aryCommanders = JSON.parse(this.responseText);
-          getRandCard(aryCommanders);
+          var scryOutput = JSON.parse(this.responseText);
+          console.log("Scryfall reports " + scryOutput.total_cards + " cards in total.");
+          aryCommanders = getArray(scryOutput);
+          getRandCard();
         }
         // End of If (ready!)
         else {
