@@ -25,6 +25,7 @@
   <script type="text/javascript">
     console.log("Hello, fox. It's been a while.");
     var aryCommanders;
+    getAllCards();
 
     /**************************
     == Functions start here! ==
@@ -63,6 +64,7 @@
       xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
           aryCommanders = JSON.parse(this.responseText);
+          getRandCard(aryCommanders);
         }
         // End of If (ready!)
         else {
