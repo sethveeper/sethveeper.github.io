@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../styles.css">
+  <title>Mau's Wishlist</title>
+</head>
+
+<body>
+  <div id="container">
+
+    <h1>Mau's Wishlist</h1>
+    <br>
+    <div class='card'>
+      <h2>Mau's Mailing Address</h2>
+      <p><a href='https://l.facebook.com/l.php?u=https%3A%2F%2Fmaps.app.goo.gl%2FwEXHagHYHio9zJ3k6%3Ffbclid%3DIwAR1SNWvRiQCWQCSgJuwZW7VX-FVR4zuwrZSXlQi-5vk9hU7xTvK8r9hflYQ&h=AT3WO-PL70Y03TYumFU-5qpcAoE6d8MdrEHaxGXZ4eziuwmN-hK2BOVPwXaqjkRJ9al-ZtEfWf8XW6DtpK_aBOmv2ei0Ce2JwSGgHmJG7nY20MWRg1JZ2O42kmdV2BhlBAKG7w'>Google Maps</a></p>
+      <p>2026 Bird Road
+        Apt 204
+        Branson, MO
+        65616
+      </p>
+    </div>
+  </br>
+  </div>
+
+  <script src="./wishlist.js"></script>
+  <script>
+    var container = document.getElementById('container');
+
+for(var i = 0; i < wishlist.length; i++)
+{
+    container.innerHTML += getCard(wishlist[i].Title, wishlist[i].Link, wishlist[i].Descript);
+}
+
+function getCard(inTitle, inLink, inDescript)
+{
+    var output = "<div class='card'><h2>##TITLE##</h2><p><a href='##LINK##'>##LINK##</a></p><p>##DESCRIPT##</p></div></br>";
+
+    output = output.replace("##TITLE##", inTitle);
+    output = output.replace("##LINK##", inLink);
+    output = output.replace("##LINK##", inLink);
+    output = output.replace("##DESCRIPT##", inDescript);
+
+    return output;
+}
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,8 @@
+var wishlist = [
+{"Title":"FF14: Band of Eternal Passion","Link":"https://store.finalfantasyxiv.com/ffxivstore/en-us/product/63","Descript":"This is another glamour item, that was once available in-game but as far as I know won\u0027t be available that way again."},
+{"Title":"D\u0026D 5e Player\u0027s Handbook","Link":"https://dnd.wizards.com/products/tabletop-games/rpg-products/rpg_playershandbook","Descript":"Self-explanatory, I think. Not entirely sure how badly I actually need this, granted..."},
+{"Title":"D\u0026D 5e Ravnica Supplement","Link":"https://dnd.wizards.com/products/tabletop-games/rpg-products/guildmasters-guide-ravnica","Descript":"Information from this supplement is a little harder to find sometimes \u003Ew\u003E"},
+{"Title":"D\u0026D 5e Theros Supplement","Link":"https://dnd.wizards.com/products/tabletop-games/rpg-products/mythic-odysseys-theros","Descript":"Similar in justification to the Ravnica supplement. Theros and Ravnica were my introduction to MtG (Since both of them were in Standard when I started playing)."},
+{"Title":"MtG: Adventures in the Forgotten Realms","Link":"https://magic.wizards.com/en/articles/archive/feature/adventures-forgotten-realms-product-overview-2021-06-29","Descript":"This is the D\u0026D themed set coming out next month. There\u0027s a few specific cards I\u0027m excited about (DergKnight!) but having taken a careful look I kind of just like the set design all aorund so far."},
+{"Title":"Cat Headphones (UPDATED)","Link":"http://m.yowu.com/product/detail?sku=3538\u0026fbclid=IwAR03kKqHj_Nnnb5uiM3DvGw3XN0-rw1s6yOog6b7ikM1jFYzX7UyfTEhHgw","Descript":"Mau found some similar ones that aren\u0027t sold out! :o\r\n\r\n(They\u0027re still kinda pricey tho \u003Ew\u003E)"}
+];
