@@ -6,146 +6,79 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>A Random Commander</title>
+
+  <link rel="stylesheet" href="stylesheet.css">
 </head>
 
 <body>
-  <div id="cardContain">
-    <h3 id="cardTotal">Selected from ???? possible commanders...</h3>
-    <h1 id="cardName">Card Name</h1>
-    <ul>
-      <li><a href="#" id="cardScryfall">Scryfall</a></li>
-      <li><a href="#" id="cardEDHREC">EDHREC</a></li>
-      <li><a href="#" id="cardTCGPlayer">TCG Player</a></li>
-    </ul>
-    <button id="cardReroll" onclick="getRandCard()">You don't like this one?</button>
-    <p id="cardImg">
-    </p>
+  <p id="msgLoading">Loading...</p>
+
+  <div id="cardContain"></div>
+
+  <div id="formContain">
+    <h3>What if we narrowed it down slightly?</h3>
+    <form action="./commanderRandom.html">
+      <ul>
+        <li>
+          <label for="price">Maximum Price USD (Minimum $0.50)</label>
+          <input type="text" name="priceUSD" value="">
+        </li>
+
+        <li>
+          <label for="colors">Pick some Colors:</label>
+          <ul>
+            <li>
+              <input type="checkbox" id="cWhite" name="colors" value="W">
+              <label for="cWhite">White</label>
+            </li>
+            <li>
+              <input type="checkbox" id="cBlue" name="colors" value="U">
+              <label for="cBlue">Blue</label>
+            </li>
+            <li>
+              <input type="checkbox" id="cBlack" name="colors" value="B">
+              <label for="cBlack">Black</label>
+            </li>
+            <li>
+              <input type="checkbox" id="cRed" name="colors" value="R">
+              <label for="cRed">Red</label>
+            </li>
+            <li>
+              <input type="checkbox" id="cGreen" name="colors" value="G">
+              <label for="cGreen">Green</label>
+            </li>
+
+          </ul>
+        </li>
+        <!-- End of Color check -->
+
+        <li>
+          <label for="partner">Find a Partner?</label>
+          <ul>
+            <li>
+              <input type="radio" id="pMaybe" name="partner" value="maybe">
+              <label for="pMaybe">I don't care</label>
+            </li>
+
+            <li>
+              <input type="radio" id="pYes" name="partner" value="yes">
+              <label for="pYes">Yes, give me a Partner</label>
+            </li>
+
+            <li>
+              <input type="radio" id="pNo" name="partner" value="no">
+              <label for="pNo">No, do not give me a Partner</label>
+            </li>
+          </ul>
+        </li>
+        <!-- End of Partner check -->
+
+        <li><input type="submit" value="Submit"></li>
+      </ul>
+    </form>
   </div>
 
-  <script type="text/javascript">
-    console.log("Hello, fox. It's been a while.");
-    var aryCommanders;
-    getAllCards();
-
-    /**************************
-    == Functions start here! ==
-    **************************/
-
-    function getRandCard() {
-
-      var intRandom;
-      var output;
-
-      var msgTotal = "Selected from " + aryCommanders.length + " possible Commanders...";
-      console.log(msgTotal);
-      document.getElementById("cardTotal").innerHTML = msgTotal;
-
-      if(aryCommanders.length > 1)
-      {
-        intRandom = Math.floor(Math.random() * aryCommanders.length);
-        output = aryCommanders[intRandom];
-        aryCommanders.splice(intRandom, 1)
-      }
-      else
-      {
-        intRandom = 0;
-        output = aryCommanders[intRandom];
-      }
-
-      console.log("Randomly selected index is " + intRandom);
-      console.log("Result: " + output.name);
-
-      fillCard(output);
-    }
-    // End of getRandCard function
-
-    function fillCard(inCard)
-    {
-      document.getElementById("cardName").innerHTML = inCard.name;
-      document.getElementById("cardScryfall").href = inCard.scryfall_uri;
-      document.getElementById("cardEDHREC").href = inCard.related_uris.edhrec;
-      document.getElementById("cardTCGPlayer").href = inCard.purchase_uris.tcgplayer;
-
-      document.getElementById("cardImg").innerHTML = "";
-      if(typeof inCard.card_faces != "undefined")
-      {
-        for(var i = 0; i < inCard.card_faces.length; i++)
-        {
-          var face = document.createElement("img");
-          face.src = inCard.card_faces[i].image_uris.small;
-          document.getElementById("cardImg").appendChild(face)
-        }
-        // End of For loop
-      }
-      // End of If (There's more than one card face)
-      else
-      {
-        var face = document.createElement("img");
-        face.src = inCard.image_uris.small;
-        document.getElementById("cardImg").appendChild(face)
-      }
-      // End of Else
-    }
-    // End of fillCard function
-
-    function getArray(scryResults)
-    {
-      var output = [];
-      var iter = 0;
-      var bool = true;
-
-      while(bool)
-      {
-        try {
-          document.getElementById("cardName").innerHTML = scryResults.data[iter].name;
-          output.push(scryResults.data[iter]);
-          iter++;
-          bool = true;
-        }
-        catch (e) {
-          bool = false;
-        }
-      }
-      // End of while loop
-
-      console.log("Successfully cached " + output.length + " cards in total.");
-      return output;
-    }
-    // End of getArray function
-
-    function getAPIcall()
-    {
-      let output = 'https://api.scryfall.com/cards/search?q=';
-      output += 'is%3Acommander';
-      return output;
-    }
-
-    function getAllCards() {
-      var urlScryfall = getAPIcall();
-      console.log("Current API call: " + urlScryfall);
-
-      var xmlHttp = new XMLHttpRequest();
-      xmlHttp.onreadystatechange = function() {
-        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-          var scryOutput = JSON.parse(this.responseText);
-          console.log("Scryfall reports " + scryOutput.total_cards + " cards in total.");
-          aryCommanders = getArray(scryOutput);
-          getRandCard();
-        }
-        // End of If (ready!)
-        else {
-          console.log("Failed to call!");
-        }
-        // End of Else
-      };
-      // End of onreadystatchange function re-write
-
-      xmlHttp.open("GET", urlScryfall, true); // true for asynchronous
-      xmlHttp.send(null);
-    }
-    // End of GetAllCards function
-  </script>
-
+  <script src="scripts.js" charset="utf-8"></script>
 </body>
 
 </html>
