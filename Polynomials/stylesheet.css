@@ -1,0 +1,12 @@
+html, body {
+  font-family: sans-serif;
+  font-size: 30px;
+}
+
+#output {
+  width: 80%;
+  padding: 20px;
+  margin: auto;
+  border: 2px solid black;
+  border-radius: 20px;
+}
